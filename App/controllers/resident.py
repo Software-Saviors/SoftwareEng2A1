@@ -1,0 +1,17 @@
+from App.models import Resident,Request,Inboxmessage
+from App.database import db
+
+
+def create_request(resident_id, drive_id):
+    new_request = Request(
+        resident_id=resident_id,
+        drive_id=drive_id,
+        status='Pending'
+    )
+    db.session.add(new_request)
+    db.session.commit()
+    return new_request
+
+def view_inbox(resident_id):
+    Inboxmessages = Inboxmessage.query.filter_by(resident_id=resident_id).all()
+    return Inboxmessages

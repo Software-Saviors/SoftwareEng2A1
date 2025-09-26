@@ -11,6 +11,7 @@ class Inboxmessage(db.Model):
 
     resident_rel = db.relationship('Resident', backref='inboxmessages')
 
-    def __init__(self, message):
+    def __init__(self, message,drive):
         self.message = message
+        self.drive = drive
         self.timestamp = datetime.now(datetime.timezone.utc)

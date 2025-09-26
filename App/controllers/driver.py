@@ -1,4 +1,4 @@
-from App.models import Resident, Driver,Inboxmessage,Drivelog
+from App.models import Resident, Driver,Inboxmessage,Drivelog, Request
 from App.database import db
 
 def schedule_drive(driver_id,City, LiscensePlate):
@@ -19,3 +19,18 @@ def schedule_drive(driver_id,City, LiscensePlate):
         db.session.add(new_drivelog)
         db.session.commit()
         return new_drivelog
+
+def change_request_status(request, new_status):
+    request = Request.query.get(request.id)
+    if request:
+        request.status = new_status
+        db.session.commit()
+        return request
+    return None
+
+def view_requests(drive_id):
+    requests = Request.query.filter_by(drive_id=drive_id).all()
+    if requests:
+        return requests 
+    
+    return None
