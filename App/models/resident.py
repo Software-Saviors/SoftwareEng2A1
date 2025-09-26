@@ -10,10 +10,11 @@ class Resident(User):
     address = db.Column(db.String(200), nullable=False)
     City = db.Column(db.String(100), nullable=False)
    
+    requested_drives = db.relationship('DriveRequest', backref='resident', lazy=True)
+    requested_drives = db.relationship('DriveRequest', back_populates='tenant')
 
     
-    def __init__(self,password,fname,lname, phonenumber, email, address, City):
-        self.password = password
+    def __init__(self,fname,lname, phonenumber, email, address, City):
         self.fname = fname
         self.lname = lname
         self.phonenumber = phonenumber

@@ -5,8 +5,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email =  db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)
-    resident = db.relationship('Resident', backref='user', uselist=False)
-    driver = db.relationship('Driver', backref='user', uselist=False)
+    user_type = db.Column(db.String(50), nullable=False)  # 'resident' or 'driver'
+    resident = db.relationship('Resident', backref='user', uselist=False,lazy=True)
+    driver = db.relationship('Driver', backref='user', uselist=False,lazy=True)
+   
     def __init__(self, email, password):
         self.email = email
         self.set_password(password)
