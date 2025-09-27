@@ -1,14 +1,14 @@
 from App.models import User
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
+def create_user(email, password):
+    newuser = User(email=email, password=password)
     db.session.add(newuser)
     db.session.commit()
     return newuser
 
-def get_user_by_username(username):
-    result = db.session.execute(db.select(User).filter_by(username=username))
+def get_user_by_email(email):
+    result = db.session.execute(db.select(User).filter_by(email=email))
     return result.scalar_one_or_none()
 
 def get_user(id):
@@ -24,10 +24,10 @@ def get_all_users_json():
     users = [user.get_json() for user in users]
     return users
 
-def update_user(id, username):
+def update_user(id, email):
     user = get_user(id)
     if user:
-        user.username = username
+        user.email = email
         # user is already in the session; no need to re-add
         db.session.commit()
         return True

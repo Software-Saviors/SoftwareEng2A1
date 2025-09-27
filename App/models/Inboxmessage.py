@@ -1,6 +1,5 @@
 from App.database import db
 from datetime import datetime
-from .resident import Resident
 
 class Inboxmessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)

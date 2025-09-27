@@ -8,12 +8,12 @@ class User(db.Model):
     password = db.Column(db.String(256), nullable=False)
     user_type = db.Column(db.String(50), nullable=False)  # 'resident', 'driver', etc.
 
-    resident = db.relationship('Resident', backref='user', uselist=False)
-    driver = db.relationship('Driver', backref='user', uselist=False)
     
-    def __init__(self, email, password):
+    
+    def __init__(self, email, password, user_type=None):
         self.email = email
         self.set_password(password)
+        self.user_type = user_type if user_type else 'resident'  # Default to 'resident' if not specified
 
     def get_json(self):
         return{
