@@ -27,13 +27,15 @@ User Commands
 # create a group, it would be the first argument of the comand
 # eg : flask user <command>
 user_cli = AppGroup('user', help='User object commands') 
-
+user_cli = AppGroup('driver', help='Driver object commands')
+user_cli = AppGroup('resident', help='Resident object commands')
 # Then define the command and any parameters and annotate it with the group (@)
 @user_cli.command("create", help="Creates a user")
 @click.argument("username", default="rob")
 @click.argument("password", default="robpass")
-def create_user_command(username, password):
-    create_user(username, password)
+@click.argument("usertype", default="resident")
+def create_user_command(username, password, usertype):
+    create_user(username, password, usertype)
     print(f'{username} created!')
 
 # this command will be : flask user create bob bobpass
