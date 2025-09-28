@@ -2,11 +2,12 @@ from App.models import Resident,Request,Inboxmessage
 from App.database import db
 
 
-def create_request(resident_id, drive_id):
+def create_request(resident_id, drive_id, address):
     new_request = Request(
         resident_id=resident_id,
         drive_id=drive_id,
-        status='Pending'
+        status='Pending',
+        address=address
     )
     db.session.add(new_request)
     db.session.commit()

@@ -20,8 +20,8 @@ def schedule_drive(driver_id,City, LiscensePlate):
         db.session.commit()
         return new_drivelog
 
-def change_request_status(request, new_status):
-    request = Request.query.get(request.id)
+def change_request_status(request_id, new_status):
+    request = Request.query.filter_by(id=request_id).first()
     if request:
         request.status = new_status
         db.session.commit()
