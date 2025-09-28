@@ -9,13 +9,11 @@ class Resident(User):
     phonenumber = db.Column(db.String(15), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     city = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False, unique=True)
+    
 
     requested_drives = db.relationship('DriveRequest', back_populates='resident')
 
-    def __init__(self, email,fname, lname, phonenumber, address, city,password):
-        self.set_password(password)
-        self.email = email
+    def __init__(self, fname, lname, phonenumber, address, city,password):
         self.fname = fname
         self.lname = lname
         self.phonenumber = phonenumber

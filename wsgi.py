@@ -74,14 +74,14 @@ app.cli.add_command(test)
 driver_cli = AppGroup('driver', help='Driver object commands')
 
 @driver_cli.command("create", help="Creates a driver")
-@click.argument("email", default="driver1")
+@click.argument("username", default="driver1")
 @click.argument("password", default="driverpass")
 @click.argument("fname", default="Driver")
 @click.argument("lname", default="One")
 @click.argument("phone", default="1234567890")
-def create_driver_command(email, password, fname, lname, phone):
+def create_driver_command(username, password, fname, lname, phone):
     
-    create_driver(email, password, fname, lname, phone)
+    create_driver(username, password, fname, lname, phone)
     print(f'Driver {fname} {lname} created!')
 
 app.cli.add_command(driver_cli) # add the group to the cli
@@ -127,4 +127,3 @@ def change_request_status_command(request_id, new_status):
 resident_cli = AppGroup('resident', help='Resident object commands')
 
 
-@resident_cli.command("create_resident")
