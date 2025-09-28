@@ -1,5 +1,5 @@
 from App.database import db
-
+from .user import User
 class Driver(User):
     __tablename__ = 'drivers'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
