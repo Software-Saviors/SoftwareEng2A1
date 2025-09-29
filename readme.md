@@ -186,3 +186,38 @@ If you are running into errors in gitpod when updateding your github actions fil
 ## Database Issues
 
 If you are adding models you may need to migrate the database with the commands given in the previous database migration section. Alternateively you can delete you database file.
+
+
+## Resident Commands
+flask resident create <username> <password> <fname> <lname> <phonenumber> <city> <address>
+Description - Creates a user defined as a resident.
+Eg. flask resident create johndoe mypass John Doe 5551234 PortOfSpain "10 Queen St"
+
+flask resident create_request <resident_id> <drive_id> <address>
+Description - Creates a driver request using the residents own id and address.The drive id being which drive they were notified about.
+Eg. flask resident create_request 3 1 "BackRoad"
+
+flask resident view_inbox <resident_id>
+Description - Allows a resident to view their inbox which recieves notifications if a driver has scheduled a drive in their area.
+Eg. flask resident view_inbox 3
+
+flask resident view_requests <resident_id>
+Description - Allows a resident to view their created requests as well as their status.
+Eg. flask resident view_requests 3
+
+## Driver Commands
+flask driver create <username> <password> <fname> <lname> <phone>
+Description - Creates a user defined as a driver.
+Eg. flask driver create driverA passA Alice Smith 5556789
+
+flask driver schedule_drive <drive_id> <city> <licenseplate>
+Description - Schedules a drive in a city and notifies every resident in that city.
+flask driver schedule_drive 1 "Port of Spain" PDU3456
+
+flask driver view_requests <drive_id>
+Description - Displays all requests for a given drive.
+Eg. flask driver view_requests 1
+
+flask driver change_request_status <request_id> <new_status>
+Description - Updates the status of a request.
+Eg. flask driver change_request_status 2 accepted

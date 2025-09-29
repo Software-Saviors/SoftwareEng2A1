@@ -11,7 +11,8 @@ class Request(db.Model):
     address = db.Column(db.String(200), nullable=False)
     resident = db.relationship('Resident', back_populates='requested_drives')
 
-def __init__(self, resident_id, address):
-    self.resident_id = resident_id
-    self.status = 'pending'
-    self.address = address
+    def __init__(self, resident_id,drive_id, address):
+      self.resident_id = resident_id
+      self.drive_id = drive_id
+      self.status = 'pending'
+      self.address = address

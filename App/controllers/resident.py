@@ -6,7 +6,6 @@ def create_request(resident_id, drive_id, address):
     new_request = Request(
     resident_id=resident_id,
     drive_id=drive_id,
-    status='Pending',
     address=address
     )
     db.session.add(new_request)

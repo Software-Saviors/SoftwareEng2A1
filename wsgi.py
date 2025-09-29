@@ -7,7 +7,7 @@ from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users, initialize )
 from App.models.driver import Driver
 from App.controllers.driver import create_driver, schedule_drive, view_requests, change_request_status
-from App.controllers.resident import create_resident, create_request, view_inbox
+from App.controllers.resident import create_resident, create_request, view_inbox, view_requests
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
