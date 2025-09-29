@@ -8,14 +8,14 @@ class DriveLog(db.Model):
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'), nullable=False)
     start_time = db.Column(db.DateTime, default=timestamp)
     city = db.Column(db.String(50))
-    LiscensePlate = db.Column(db.String(20))
+    liscenseplate = db.Column(db.String(20))
     
     driver = db.relationship('Driver', back_populates='drive_logs')
     
-def __init__(self, driver_id, city, LiscensePlate):
+def __init__(self, driver_id, city, liscenseplate):
     self.driver_id = driver_id
     self.city = city
-    self.LiscensePlate = LiscensePlate
+    self.liscenseplate = liscenseplate
     
 
 

@@ -1,15 +1,15 @@
 from App.models import resident, driver,Inboxmessage,Drivelog, Request
 from App.database import db
 from App.models.driver import Driver
-def schedule_drive(driver_id,city, LiscensePlate):
+def schedule_drive(driver_id,city, liscenseplate):
     if driver:
-        new_drivelog = Drivelog(city=city, LiscensePlate=LiscensePlate, driver_id=driver_id)
+        new_drivelog = Drivelog(city=city, liscenseplate=liscenseplate, driver_id=driver_id)
         residents = resident.query.filter_by(city=city).all()
     
     
     for r in residents:
         new_inboxmessage = Inboxmessage(
-            Message=f"New drive scheduled in {city} with License Plate: {LiscensePlate}",
+            Message=f"New drive scheduled in {city} with License Plate: {liscenseplate}",
             driver_id=driver_id,
             resident_id=resident.id, 
             drive_id=new_drivelog.id  
