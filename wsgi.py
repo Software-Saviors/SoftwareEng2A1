@@ -5,7 +5,9 @@ from App.database import db, get_migrate
 from App.models import User
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users, initialize )
-from App.controllers.driver import create_driver
+from App.models.driver import Driver
+from App.controllers.driver import create_driver, schedule_drive, view_requests, change_request_status
+from App.controllers.resident import create_resident, create_request, view_inbox
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -91,7 +93,6 @@ app.cli.add_command(driver_cli) # add the group to the cli
 @click.argument("City", default="Chaguanas")
 @click.argument("LiscensePlate", default="ABC123")
 def schedule_drive_command(driver_id, City, LiscensePlate):
-    from App.controllers.driver import schedule_drive
     drivelog = schedule_drive(driver_id, City, LiscensePlate)
     if drivelog:
         print(f'Drive scheduled in {City} with License Plate: {LiscensePlate}')
@@ -102,7 +103,6 @@ app.cli.add_command(driver_cli) # add the group to the cli
 @driver_cli.command("view_requests", help="View requests for a specific drive")
 @click.argument("drive_id", type=int, default=1)
 def view_requests_command(drive_id):
-    from App.controllers.driver import view_requests
     requests = view_requests(drive_id)
     if requests:
         for req in requests:
@@ -115,7 +115,6 @@ app.cli.add_command(driver_cli) # add the group to the cli
 @click.argument("request_id", type=int, default=1)
 @click.argument("new_status", default="pending")
 def change_request_status_command(request_id, new_status):
-    from App.controllers.driver import change_request_status
     request = change_request_status(request_id, new_status)
     if request:
         print(f'Request ID: {request.id} status changed to {request.status}')
@@ -125,5 +124,42 @@ def change_request_status_command(request_id, new_status):
 
 
 resident_cli = AppGroup('resident', help='Resident object commands')
+
+@resident_cli.command("create", help="Creates a resident")
+@click.argument("username", default="resident1")    
+@click.argument("password", default="residentpass")
+@click.argument("fname", default="Resident")
+@click.argument("lname", default="One")
+@click.argument("phonenumber", default="0987654321")
+@click.argument("city", default="Chaguanas")
+@click.argument("address", default="123 Main St")
+def create_resident_command(username, password, fname, lname, phonenumber, city, address):
+    
+    create_resident( username, password, fname, lname, phonenumber, city, address)
+    print(f'Resident {fname} {lname} created!')
+app.cli.add_command(resident_cli) # add the group to the cli
+
+@resident_cli.command("create_request", help="Create a service request")
+@click.argument("resident_id", type=int, default=1)
+@click.argument("drive_id", type=int, default=None)
+@click.argument("address", default="456 Another St")
+def create_request_command(resident_id, drive_id, address):
+  
+    new_request = create_request(resident_id, drive_id, address)
+    print(f'Request ID: {new_request.id} created for Resident ID: {resident_id} to Address: {address}')
+app.cli.add_command(resident_cli) # add the group to the cli
+
+@resident_cli.command("view_inbox", help="View inbox messages for a resident")
+@click.argument("resident_id", type=int, default=1)
+def view_inbox_command(resident_id):
+ 
+    messages = view_inbox(resident_id)
+    if messages:
+        for msg in messages:
+            print(f'Message ID: {msg.id}, From Driver ID: {msg.driver_id}, Message: {msg.Message}, Time: {msg.timestamp}')
+    else:
+        print('No messages found or invalid resident ID.')
+app.cli.add_command(resident_cli) # add the group to the cli
+
 
 

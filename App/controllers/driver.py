@@ -1,11 +1,10 @@
 from App.models import resident, driver,Inboxmessage,Drivelog, Request
 from App.database import db
-
+from App.models.driver import Driver
 def schedule_drive(driver_id,City, LiscensePlate):
-    current_driver = driver.query.get(driver_id)
     if driver:
         new_drivelog = Drivelog(City=City, LiscensePlate=LiscensePlate, driver_id=driver_id)
-        residents = resident.query.filter_by(city=City).all()
+        residents = resident.query.filter_by(City=City).all()
     
     
     for r in residents:
@@ -36,7 +35,7 @@ def view_requests(drive_id):
     return None
 
 def create_driver(username, password, fname, lname, phone):
-    new_driver = driver(username=username, password = password, fname=fname, lname=lname, phone=phone)
+    new_driver = Driver(username=username, password=password, fname=fname, lname=lname, phone=phone)
     db.session.add(new_driver)
     db.session.commit()
     return new_driver

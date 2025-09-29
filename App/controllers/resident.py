@@ -1,6 +1,6 @@
 from App.models import resident,Request,Inboxmessage
 from App.database import db
-
+from App.models.resident import Resident
 
 def create_request(resident_id, drive_id, address):
     new_request = Request(
@@ -18,8 +18,8 @@ def view_inbox(resident_id):
     return Inboxmessages
 
 
-def create_resident(username, password, fname, lname, phonenumber, city, address):
-    new_resident = resident(username=username, password=password, fname=fname, lname=lname, phonenumber=phonenumber, city=city, address=address)
+def create_resident(username, password, fname, lname, phonenumber, City, address):
+    new_resident = Resident(username=username, password=password, fname=fname, lname=lname, phonenumber=phonenumber, City=City, address=address)
     db.session.add(new_resident)
     db.session.commit()
     return new_resident

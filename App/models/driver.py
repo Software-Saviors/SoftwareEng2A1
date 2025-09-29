@@ -1,5 +1,6 @@
 from App.database import db
 from .user import User
+from App.models.Drivelog import DriveLog
 class Driver(User):
     __tablename__ = 'drivers'
     id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
@@ -9,7 +10,8 @@ class Driver(User):
     
     drive_logs = db.relationship('DriveLog', back_populates='driver')
 
-    def __init__(self,fname, lname, phone,):
+    def __init__(self, username, password, fname, lname, phone):
+        super().__init__(username, password, user_type='driver')
         self.fname = fname
         self.lname = lname
         self.phone = phone
