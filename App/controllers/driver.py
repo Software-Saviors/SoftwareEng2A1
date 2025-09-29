@@ -7,17 +7,19 @@ from App.models.Inboxmessage import Inboxmessage
 def schedule_drive(driver_id,city, liscenseplate):
     if driver:
         new_drivelog = DriveLog(city=city, liscenseplate=liscenseplate, driver_id=driver_id)
+        db.session.add(new_drivelog)
+        db.session.commit()
         Residents = Resident.query.filter_by(city=city).all()
     
     
     for r in Residents:
         new_inboxmessage = Inboxmessage(
-            message=f"New drive scheduled in {city} with License Plate: {liscenseplate}",
+            resident_id=r.id,
             drive_id=new_drivelog.id,
-            resident_id=Resident.id, 
+            message=f"New drive scheduled in {city} with License Plate: {liscenseplate}",
+
         )
         db.session.add(new_inboxmessage)
-        db.session.add(new_drivelog)
         db.session.commit()
         return new_drivelog
 
