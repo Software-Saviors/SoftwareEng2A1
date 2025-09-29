@@ -156,7 +156,7 @@ def view_inbox_command(resident_id):
     messages = view_inbox(resident_id)
     if messages:
         for msg in messages:
-            print(f'Message ID: {msg.id}, From Driver ID: {msg.drive_id}, Message: {msg.message}, Time: {msg.timestamp}')
+            print(f'Message ID: {msg.id},  Drive ID: {msg.drive_id}, Message: {msg.message}, Time: {msg.timestamp}')
     else:
         print('No messages found or invalid resident ID.')
 app.cli.add_command(resident_cli) # add the group to the cli
