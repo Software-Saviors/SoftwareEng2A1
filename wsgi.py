@@ -89,11 +89,11 @@ def create_driver_command(username, password, fname, lname, phone):
 app.cli.add_command(driver_cli) # add the group to the cli
 
 @driver_cli.command("schedule_drive", help="Schedule a drive and notify residents")
-@click.argument("driver_id", type=int, default=1)
+@click.argument("drive_id", type=int, default=1)
 @click.argument("city", default="Chaguanas")
 @click.argument("liscenseplate", default="ABC123")
-def schedule_drive_command(driver_id, city, liscenseplate):
-    drivelog = schedule_drive(driver_id, city, liscenseplate)
+def schedule_drive_command(drive_id, city, liscenseplate):
+    drivelog = schedule_drive(drive_id, city, liscenseplate)
     if drivelog:
         print(f'Drive scheduled in {city} with License Plate: {liscenseplate}')
     else:
