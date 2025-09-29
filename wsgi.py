@@ -131,11 +131,11 @@ resident_cli = AppGroup('resident', help='Resident object commands')
 @click.argument("fname", default="Resident")
 @click.argument("lname", default="One")
 @click.argument("phonenumber", default="0987654321")
-@click.argument("city", default="Chaguanas")
+@click.argument("City", default="Chaguanas")
 @click.argument("address", default="123 Main St")
-def create_resident_command(username, password, fname, lname, phonenumber, city, address):
+def create_resident_command(username, password, fname, lname, phonenumber, City, address):
     
-    create_resident( username, password, fname, lname, phonenumber, city, address)
+    create_resident( username, password, fname, lname, phonenumber, City, address)
     print(f'Resident {fname} {lname} created!')
 app.cli.add_command(resident_cli) # add the group to the cli
 
