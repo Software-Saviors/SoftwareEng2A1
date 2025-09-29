@@ -12,10 +12,10 @@ class DriveLog(db.Model):
     
     driver = db.relationship('Driver', back_populates='drive_logs')
     
-def __init__(self, driver_id, city, liscenseplate):
-    self.driver_id = driver_id
-    self.city = city
-    self.liscenseplate = liscenseplate
+    def __init__(self, driver_id, city, liscenseplate):
+      self.driver_id = driver_id
+      self.city = city
+      self.liscenseplate = liscenseplate
     
 
 
