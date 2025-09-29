@@ -1,7 +1,7 @@
 from .user import create_user
 from App.database import db
-from resident import create_resident
-from driver import create_driver
+from App.controllers.resident import create_resident
+from App.controllers.driver import create_driver
 def initialize():
     db.drop_all()
     db.create_all()
