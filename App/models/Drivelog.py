@@ -7,13 +7,15 @@ class DriveLog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'), nullable=False)
     start_time = db.Column(db.DateTime, default=timestamp)
-    City = db.Column(db.String(50))
+    city = db.Column(db.String(50))
     LiscensePlate = db.Column(db.String(20))
     
     driver = db.relationship('Driver', back_populates='drive_logs')
     
-def __init__(self, driver_id, City, LiscensePlate):
+def __init__(self, driver_id, city, LiscensePlate):
     self.driver_id = driver_id
-    self.City = City
+    self.city = city
     self.LiscensePlate = LiscensePlate
     
+
+

@@ -90,12 +90,12 @@ app.cli.add_command(driver_cli) # add the group to the cli
 
 @driver_cli.command("schedule_drive", help="Schedule a drive and notify residents")
 @click.argument("driver_id", type=int, default=1)
-@click.argument("City", default="Chaguanas")
+@click.argument("city", default="Chaguanas")
 @click.argument("LiscensePlate", default="ABC123")
-def schedule_drive_command(driver_id, City, LiscensePlate):
-    drivelog = schedule_drive(driver_id, City, LiscensePlate)
+def schedule_drive_command(driver_id, city, LiscensePlate):
+    drivelog = schedule_drive(driver_id, city, LiscensePlate)
     if drivelog:
-        print(f'Drive scheduled in {City} with License Plate: {LiscensePlate}')
+        print(f'Drive scheduled in {city} with License Plate: {LiscensePlate}')
     else:
         print('Driver not found or no residents in the specified city.')
 app.cli.add_command(driver_cli) # add the group to the cli
@@ -131,11 +131,11 @@ resident_cli = AppGroup('resident', help='Resident object commands')
 @click.argument("fname", default="Resident")
 @click.argument("lname", default="One")
 @click.argument("phonenumber", default="0987654321")
-@click.argument("City", default="Chaguanas")
+@click.argument("city", default="Chaguanas")
 @click.argument("address", default="123 Main St")
-def create_resident_command(username, password, fname, lname, phonenumber, City, address):
+def create_resident_command(username, password, fname, lname, phonenumber, city, address):
     
-    create_resident( username, password, fname, lname, phonenumber, City, address)
+    create_resident( username, password, fname, lname, phonenumber, city, address)
     print(f'Resident {fname} {lname} created!')
 app.cli.add_command(resident_cli) # add the group to the cli
 
