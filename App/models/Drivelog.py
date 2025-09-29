@@ -1,12 +1,12 @@
 from App.database import db
 from datetime import datetime, timezone
-timestamp = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+
 
 class DriveLog(db.Model):
     __tablename__ = 'drive_log'
     id = db.Column(db.Integer, primary_key=True)
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'), nullable=False)
-    start_time = db.Column(db.DateTime, default=timestamp)
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     city = db.Column(db.String(50))
     liscenseplate = db.Column(db.String(20))
     
