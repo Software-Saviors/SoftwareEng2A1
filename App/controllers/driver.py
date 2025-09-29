@@ -32,7 +32,7 @@ def change_request_status(request_id, new_status):
         return request
     return None
 
-def view_requests(drive_id):
+def view_requests_driver(drive_id):
     requests = Request.query.filter_by(drive_id=drive_id).all()
     if requests:
         return requests 

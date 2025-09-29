@@ -6,8 +6,8 @@ from App.models import User
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users, initialize )
 from App.models.driver import Driver
-from App.controllers.driver import create_driver, schedule_drive, view_requests, change_request_status
-from App.controllers.resident import create_resident, create_request, view_inbox, view_requests
+from App.controllers.driver import create_driver, schedule_drive, view_requests_driver, change_request_status
+from App.controllers.resident import create_resident, create_request, view_inbox, view_requests_resident
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -103,7 +103,7 @@ app.cli.add_command(driver_cli) # add the group to the cli
 @driver_cli.command("view_requests", help="View requests for a specific drive")
 @click.argument("drive_id", type=int, default=1)
 def view_requests_command(drive_id):
-    requests = view_requests(drive_id)
+    requests = view_requests_driver(drive_id)
     if requests:
         for req in requests:
             print(f'Request ID: {req.id}, Status: {req.status}, Resident ID: {req.resident_id}, Address: {req.address}, Request Time: {req.timestamp}')
@@ -161,10 +161,10 @@ def view_inbox_command(resident_id):
         print('No messages found or invalid resident ID.')
 app.cli.add_command(resident_cli) # add the group to the cli
 
-@resident_cli.command("view_requests", help="View service requests for a resident")
+@resident_cli.command("view_requests_resident", help="View service requests for a resident")
 @click.argument("resident_id", type=int, default=1)
 def view_requests_command(resident_id):
-    requests = view_requests(resident_id)
+    requests = view_requests_resident(resident_id)
     if requests:
         for req in requests:
             print(f'Request ID: {req.id}, Status: {req.status}, Address: {req.address}, Request Time: {req.timestamp}')

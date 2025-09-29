@@ -23,6 +23,6 @@ def create_resident(username, password, fname, lname, phonenumber, city, address
     db.session.commit()
     return new_resident
 
-def view_requests(resident_id):
+def view_requests_resident(resident_id):
     requests = Request.query.filter_by(resident_id=resident_id).all()
     return requests
