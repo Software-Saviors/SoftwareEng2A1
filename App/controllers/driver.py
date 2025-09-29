@@ -1,9 +1,10 @@
-from App.models import  driver,Inboxmessage, Request
+from App.models import  driver,Inboxmessage
 from App.database import db
 from App.models.driver import Driver
 from App.models.Drivelog import DriveLog
 from App.models.resident import Resident
 from App.models.Inboxmessage import Inboxmessage
+from App.models.Request import Request
 def schedule_drive(driver_id,city, liscenseplate):
     if driver:
         new_drivelog = DriveLog(city=city, liscenseplate=liscenseplate, driver_id=driver_id)
