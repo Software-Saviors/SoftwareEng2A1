@@ -13,9 +13,8 @@ def schedule_drive(driver_id,city, liscenseplate):
     for r in Residents:
         new_inboxmessage = Inboxmessage(
             message=f"New drive scheduled in {city} with License Plate: {liscenseplate}",
-            driver_id=driver_id,
-            Resident_id=Resident.id, 
-            drive_id=new_drivelog.id  
+            drive_id=new_drivelog.id,
+            resident_id=Resident.id, 
         )
         db.session.add(new_inboxmessage)
         db.session.add(new_drivelog)
