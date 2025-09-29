@@ -4,10 +4,10 @@ from App.models.resident import Resident
 from App.models.Inboxmessage import Inboxmessage
 def create_request(resident_id, drive_id, address):
     new_request = Request(
-        resident_id=resident_id,
-        drive_id=drive_id,
-        status='Pending',
-        address=address
+    resident_id=resident_id,
+    drive_id=drive_id,
+    status='Pending',
+    address=address
     )
     db.session.add(new_request)
     db.session.commit()
@@ -23,3 +23,7 @@ def create_resident(username, password, fname, lname, phonenumber, city, address
     db.session.add(new_resident)
     db.session.commit()
     return new_resident
+
+def view_requests(resident_id):
+    requests = Request.query.filter_by(resident_id=resident_id).all()
+    return requests

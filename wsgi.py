@@ -106,7 +106,7 @@ def view_requests_command(drive_id):
     requests = view_requests(drive_id)
     if requests:
         for req in requests:
-            print(f'Request ID: {req.id}, Status: {req.status}, Resident ID: {req.resident_id}, Address: {req.address}, Request Time: {req.request_time}')
+            print(f'Request ID: {req.id}, Status: {req.status}, Resident ID: {req.resident_id}, Address: {req.address}, Request Time: {req.timestamp}')
     else:
         print('No requests found for this drive or invalid drive ID.')
 app.cli.add_command(driver_cli) # add the group to the cli
@@ -150,7 +150,7 @@ def create_request_command(resident_id, drive_id, address):
 app.cli.add_command(resident_cli) # add the group to the cli
 
 @resident_cli.command("view_inbox", help="View inbox messages for a resident")
-@click.argument("resident_id", type=int, default=1)
+@click.argument("resident_id", type=int)
 def view_inbox_command(resident_id):
  
     messages = view_inbox(resident_id)
@@ -159,6 +159,17 @@ def view_inbox_command(resident_id):
             print(f'Message ID: {msg.id},  Drive ID: {msg.drive_id}, Message: {msg.message}, Time: {msg.timestamp}')
     else:
         print('No messages found or invalid resident ID.')
+app.cli.add_command(resident_cli) # add the group to the cli
+
+@resident_cli.command("view_requests", help="View service requests for a resident")
+@click.argument("resident_id", type=int, default=1)
+def view_requests_command(resident_id):
+    requests = view_requests(resident_id)
+    if requests:
+        for req in requests:
+            print(f'Request ID: {req.id}, Status: {req.status}, Address: {req.address}, Request Time: {req.timestamp}')
+    else:
+        print('No requests found or invalid resident ID.')
 app.cli.add_command(resident_cli) # add the group to the cli
 
 
