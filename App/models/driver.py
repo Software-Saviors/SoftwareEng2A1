@@ -7,6 +7,7 @@ class Driver(User):
     lname = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(15), nullable=False)
     
+    drive_logs = db.relationship('DriveLog', back_populates='driver')
 
     def __init__(self,fname, lname, phone,):
         self.fname = fname

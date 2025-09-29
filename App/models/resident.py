@@ -10,8 +10,8 @@ class Resident(User):
     address = db.Column(db.String(200), nullable=False)
     city = db.Column(db.String(100), nullable=False)
     
-
-    requested_drives = db.relationship('DriveRequest', back_populates='resident')
+    inbox_messages = db.relationship('Inboxmessage', back_populates='resident_rel')
+    requested_drives = db.relationship('Request', back_populates='resident')
 
     def __init__(self, fname, lname, phonenumber, address, city,password):
         self.fname = fname
