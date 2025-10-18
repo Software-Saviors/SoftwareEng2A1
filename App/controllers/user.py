@@ -1,8 +1,8 @@
 from App.models import User
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
+def create_user(username, password, usertype=None):
+    newuser = User(username=username, password=password, user_type=usertype)
     db.session.add(newuser)
     db.session.commit()
     return newuser
@@ -15,8 +15,7 @@ def get_user(id):
     return db.session.get(User, id)
 
 def get_all_users():
-    return db.session.scalars(db.select(User)).all()
-
+    return db.session.execute(db.select(User)).scalars().all()
 def get_all_users_json():
     users = get_all_users()
     if not users:
