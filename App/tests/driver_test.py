@@ -17,6 +17,24 @@ LOGGER = logging.getLogger(__name__)
 '''Unit Testing'''
 
 class DriverUnitTests(unittest.TestCase):
+    def test_new_driver(self):
+        new_driver = driver("testdriver", "testpassword", "Test", "Driver", "1234567")
+        assert driver.id is not None
+        assert driver.username == "testdriver"
+        assert driver.fname == "Test"
+        assert driver.lname == "Driver"
+        assert driver.phone == "1234567"
+
+'''Integration Testing'''
+
+@pytest.fixture(autouse=True, scope="module")
+def empty_db():
+    app = create_app({'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite:///test.db'})
+    create_db()
+    yield app.test_client()
+    db.drop_all()
+
+class DriverIntegrationTests(unittest.TestCase):
 
     def test_create_driver(self):
         driver = create_driver(

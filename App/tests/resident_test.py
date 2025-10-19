@@ -12,11 +12,21 @@ from App.controllers import (
 
 LOGGER = logging.getLogger(__name__)
 
-'''
-   Unit Tests
-'''
+'''Unit Tests'''
 
 class ResidentUnitTests(unittest.TestCase):
+    def test_new_resident(self):
+        new_resident = resident("testresident", "testpassword", "Test", "Resident", "7654321")
+        assert new_resident is not None
+        assert new_resident.id is not None
+        assert new_resident.username == "testresident"
+        assert new_resident.fname == "Test"
+        assert new_resident.lname == "Resident"
+        assert new_resident.phonenumber == "7654321"
+
+'''Integration Tests'''
+
+class ResidentIntegrationTests(unittest.TestCase):
     def test_create_resident(self):
         resident = create_resident(
             username="testresident",
