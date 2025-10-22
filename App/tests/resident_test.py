@@ -16,13 +16,15 @@ LOGGER = logging.getLogger(__name__)
 
 class ResidentUnitTests(unittest.TestCase):
     def test_new_resident(self):
-        new_resident = resident("testresident", "testpassword", "Test", "Resident", "7654321")
-        assert new_resident is not None
-        assert new_resident.id is not None
+        new_resident = resident.Resident("testresident", "Test", "Resident", "7654321",
+        "123 Test St",  "TestCity", "testpassword")
+
         assert new_resident.username == "testresident"
         assert new_resident.fname == "Test"
         assert new_resident.lname == "Resident"
         assert new_resident.phonenumber == "7654321"
+        assert new_resident.address == "123 Test St"
+        assert new_resident.city == "TestCity"
 
 '''Integration Tests'''
 
@@ -37,26 +39,33 @@ def empty_db():
 class ResidentIntegrationTests(unittest.TestCase):
     def test_create_resident(self):
         resident = create_resident(
-            username="testresident",
+            username="testresident1",
             password="testpassword",
             fname="Test",
             lname="Resident",
-            phone="7654321"
+            phonenumber="7654321",
+            address="123 Test St",
+            city="TestCity"
         )
+
         assert resident is not None
         assert resident.id is not None
-        assert resident.username == "testresident"
+        assert resident.username == "testresident1"
         assert resident.fname == "Test"
         assert resident.lname == "Resident"
         assert resident.phonenumber == "7654321"
+        assert resident.address == "123 Test St"
+        assert resident.city == "TestCity"
 
     def test_create_request(self):
         resident = create_resident(
-            username="testresident",
+            username="testresident2",
             password="testpassword",
             fname="Test",
             lname="Resident",
-            phone="7654321"
+            phonenumber="7654321",
+            address="123 Test St",
+            city="TestCity"
         )
 
         request= create_request(
@@ -73,11 +82,13 @@ class ResidentIntegrationTests(unittest.TestCase):
 
     def test_view_inbox(self):
         resident = create_resident(
-            username="testresident",
+            username="testresident3",
             password="testpassword",
             fname="Test",
             lname="Resident",
-            phone="7654321"
+            phonenumber="7654321",
+            address="123 Test St",
+            city="TestCity"
         )
 
         inbox= view_inbox(resident.id)
@@ -85,11 +96,13 @@ class ResidentIntegrationTests(unittest.TestCase):
 
     def test_view_requests_resident(self):
         resident = create_resident(
-            username="testresident",
+            username="testresident4",
             password="testpassword",
             fname="Test",
             lname="Resident",
-            phone="7654321"
+            phonenumber="7654321",
+            address="123 Test St",
+            city="TestCity"
         )
 
         requests = view_requests_resident(resident.id)

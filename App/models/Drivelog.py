@@ -11,6 +11,7 @@ class DriveLog(db.Model):
     liscenseplate = db.Column(db.String(20))
     
     driver = db.relationship('Driver', back_populates='drive_logs')
+    requests = db.relationship('Request', back_populates='drive')
     
     def __init__(self, driver_id, city, liscenseplate):
       self.driver_id = driver_id

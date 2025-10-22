@@ -22,7 +22,7 @@ def schedule_drive(driver_id,city, liscenseplate):
         )
         db.session.add(new_inboxmessage)
         db.session.commit()
-        return new_drivelog
+    return new_drivelog
 
 def change_request_status(request_id, new_status):
     request = Request.query.filter_by(id=request_id).first()
