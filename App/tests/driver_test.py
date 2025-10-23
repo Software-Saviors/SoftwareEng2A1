@@ -18,12 +18,11 @@ LOGGER = logging.getLogger(__name__)
 
 class DriverUnitTests(unittest.TestCase):
     def test_new_driver(self):
-        new_driver = driver("testdriver", "testpassword", "Test", "Driver", "1234567")
-        assert driver.id is not None
-        assert driver.username == "testdriver"
-        assert driver.fname == "Test"
-        assert driver.lname == "Driver"
-        assert driver.phone == "1234567"
+        new_driver = driver.Driver("testdriver", "testpassword", "Test", "Driver", "1234567")
+        assert new_driver.username == "testdriver"
+        assert new_driver.fname == "Test"
+        assert new_driver.lname == "Driver"
+        assert new_driver.phone == "1234567"
 
 '''Integration Testing'''
 
@@ -38,15 +37,17 @@ class DriverIntegrationTests(unittest.TestCase):
 
     def test_create_driver(self):
         driver = create_driver(
-            username="testdriver",
+            username="testdriver1",
             password="testpassword",
             fname="Test",
             lname="Driver",
             phone="1234567"
         )
-        assert driver is not None
-        assert driver.id is not None
-        assert driver.username == "testdriver"
+
+        db.session.add(driver)
+        db.session.commit()
+
+        assert driver.username == "testdriver1"
         assert driver.fname == "Test"
         assert driver.lname == "Driver"
         assert driver.phone == "1234567"
@@ -59,27 +60,29 @@ class DriverIntegrationTests(unittest.TestCase):
             lname="Driver",
             phone="1234567"
         )
-        assert driver is not None
-        assert driver.id is not None
         assert driver.username == "testdriver"
         assert driver.fname == "Test"
         assert driver.lname == "Driver"
         assert driver.phone == "1234567"
 
+        db.session.add(driver)
+        db.session.commit()
+
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            licenseplate="TST1234"
+            liscenseplate="TST1234"
         )
 
-        assert driverlog is not None
-        assert driverlog.driver_id == driver.id
+        db.session.add(driverlog)
+        db.session.commit()
+
         assert driverlog.city == "TestCity"
-        assert driverlog.licenseplate == "TST1234"
+        assert driverlog.liscenseplate == "TST1234"
 
     def test_change_request_status(self):
         driver = create_driver(
-            username="testdriver",
+            username="testdriver3",
             password="testpassword",
             fname="Test",
             lname="Driver",
@@ -89,7 +92,7 @@ class DriverIntegrationTests(unittest.TestCase):
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            licenseplate="TST1234"
+            liscenseplate="TST1234"
         )
         
         request = Request(
@@ -98,12 +101,15 @@ class DriverIntegrationTests(unittest.TestCase):
             address="123 Test St"
         )
 
+        db.session.add(request)
+        db.session.commit()
+
         request = change_request_status(request.id, 'accepted')
         assert request.status == 'accepted'
 
     def test_view_requests_driver(self):
         driver = create_driver(
-            username="testdriver",
+            username="testdriver4",
             password="testpassword",
             fname="Test",
             lname="Driver",
@@ -113,19 +119,22 @@ class DriverIntegrationTests(unittest.TestCase):
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            licenseplate="TST1234"
+            liscenseplate="TST1234"
         )
 
         request = Request(
-            resident_id=1,
+            resident_id=2,
             drive_id=driverlog.id,
             address="123 Test St"
         )
 
-        requests = view_requests_driver(driver.id)
+        db.session.add(request)
+        db.session.commit()
+
+        requests = view_requests_driver(driverlog.id)
         assert len(requests) == 1
         assert requests[0].id == request.id
-        assert requests[0].resident_id == 1
-        assert requests[0].driver_id == driverlog.id
+        assert requests[0].resident_id == 2
+        assert requests[0].drive.driver_id == driver.id
         assert requests[0].status == 'pending'
         assert requests[0].address == "123 Test St"

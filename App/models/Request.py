@@ -10,6 +10,7 @@ class Request(db.Model):
     status = db.Column(db.String(20), nullable=False, default='pending')  # pending, accepted, rejected, completed
     address = db.Column(db.String(200), nullable=False)
     resident = db.relationship('Resident', back_populates='requested_drives')
+    drive = db.relationship('DriveLog', back_populates='requests')
 
     def __init__(self, resident_id,drive_id, address):
       self.resident_id = resident_id
