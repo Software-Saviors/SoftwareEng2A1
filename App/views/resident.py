@@ -74,7 +74,7 @@ def create_request_action():
                 'drive_id': new_request.drive_id,
                 'address': new_request.address,
                 'status': new_request.status,
-                'timestamp': new_request.timestamp.isoformat() if new_request.timestamp else None
+                'timestamp': new_request.timestamp.strftime("%Y-%d-%m %I:%M %p") if new_request.timestamp else None
             }
         }), 201
     except Exception as e:
@@ -99,7 +99,7 @@ def view_resident_inbox(resident_id):
                 'id': msg.id,
                 'drive_id': msg.drive_id,
                 'message': msg.message,
-                'timestamp': msg.timestamp.isoformat() if msg.timestamp else None
+                'timestamp': msg.timestamp.strftime("%Y-%d-%m %I:%M %p") if msg.timestamp else None
             } for msg in messages]
             
             return jsonify({
@@ -135,7 +135,7 @@ def view_resident_requests(resident_id):
                 'status': req.status,
                 'drive_id': req.drive_id,
                 'address': req.address,
-                'timestamp': req.timestamp.isoformat() if req.timestamp else None
+                'timestamp': req.timestamp.strftime("%Y-%d-%m %I:%M %p") if req.timestamp else None
             } for req in requests]
             
             return jsonify({

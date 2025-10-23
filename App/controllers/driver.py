@@ -5,24 +5,29 @@ from App.models.Drivelog import DriveLog
 from App.models.resident import Resident
 from App.models.Inboxmessage import Inboxmessage
 from App.models.Request import Request
-def schedule_drive(driver_id,city, liscenseplate):
-    if driver:
-        new_drivelog = DriveLog(city=city, liscenseplate=liscenseplate, driver_id=driver_id)
-        db.session.add(new_drivelog)
-        db.session.commit()
-        Residents = Resident.query.filter_by(city=city).all()
+def schedule_drive(driver_id, city, license_plate):
+    # Ensure driver exists
+    driver = Driver.query.get(driver_id)
+    if not driver:
+        return None  # driver not found
     
+    # Create the new drive
+    new_drivelog = DriveLog(city=city, liscenseplate=license_plate, driver_id=driver_id)
+    db.session.add(new_drivelog)
+    db.session.commit()
     
-    for r in Residents:
+    # Notify all residents in the city
+    residents = Resident.query.filter_by(city=city).all()
+    for r in residents:
         new_inboxmessage = Inboxmessage(
             resident_id=r.id,
             drive_id=new_drivelog.id,
-            message=f"New drive scheduled in {city} with License Plate: {liscenseplate}",
-
+            message=f"New drive scheduled in {city} with License Plate: {license_plate}"
         )
         db.session.add(new_inboxmessage)
-        db.session.commit()
-        return new_drivelog
+    
+    db.session.commit()  # commit all messages at once
+    return new_drivelog
 
 def change_request_status(request_id, new_status):
     request = Request.query.filter_by(id=request_id).first()

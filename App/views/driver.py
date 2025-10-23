@@ -11,7 +11,6 @@ from App.controllers import (
 driver_views = Blueprint('driver_views', __name__)
 
 @driver_views.route('/api/drivers', methods=['POST'])
-@jwt_required()
 def create_driver_action():
     """Create a new driver (admin only)"""
     data = request.json
@@ -94,7 +93,7 @@ def view_drive_requests(drive_id):
                 'status': req.status,
                 'resident_id': req.resident_id,
                 'address': req.address,
-                'timestamp': req.timestamp.isoformat() if req.timestamp else None
+                'timestamp': req.timestamp.strftime("%Y-%d-%m %I:%M %p") if req.timestamp else None
             } for req in requests]
             
             return jsonify({
@@ -143,7 +142,7 @@ def update_request_status(request_id):
                     'status': updated_request.status,
                     'resident_id': updated_request.resident_id,
                     'address': updated_request.address,
-                    'timestamp': updated_request.timestamp.isoformat() if updated_request.timestamp else None
+                    'timestamp': updated_request.timestamp.strftime("%Y-%d-%m %I:%M %p") if updated_request.timestamp else None
                 }
             }), 200
         else:
