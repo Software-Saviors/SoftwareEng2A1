@@ -1,0 +1,1133 @@
+{
+	"info": {
+		"_postman_id": "f71f1132-d619-4962-aa33-2fb36246a7af",
+		"name": "COMP3613A2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42343108"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}",
+					"host": [
+						"{{baseURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "init",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/init",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"init"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "List Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"user_type\": \"resident\",\r\n        \"username\": \"bob\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"user_type\": \"resident\",\r\n        \"username\": \"steve\"\r\n    }\r\n\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Create Resident",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"bob2\",\r\n    \"password\": \"bobpass2\",\r\n    \"fname\": \"Bob\",\r\n    \"lname\": \"Dan\",\r\n    \"phonenumber\": \"555-1234\",\r\n    \"city\": \"TestCity\",\r\n    \"address\": \"123 Main Street\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/residents",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"residents"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Resident",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bob2\",\r\n    \"password\": \"bobpass2\",\r\n    \"fname\": \"Bob\",\r\n    \"lname\": \"Dan\",\r\n    \"phonenumber\": \"555-1234\",\r\n    \"city\": \"TestCity\",\r\n    \"address\": \"123 Main Street\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/residents",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"residents"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"Resident Bob Dan created successfully\",\r\n    \"resident\": {\r\n        \"address\": \"123 Main Street\",\r\n        \"city\": \"TestCity\",\r\n        \"fname\": \"Bob\",\r\n        \"id\": 4,\r\n        \"lname\": \"Dan\",\r\n        \"phonenumber\": \"555-1234\",\r\n        \"username\": \"bob2\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Driver",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"bobdriver\",\r\n    \"password\": \"bobdriverpass\",\r\n    \"fname\": \"Bob\",\r\n    \"lname\": \"Driver\",\r\n    \"phone\": \"555-1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/drivers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"drivers"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Driver",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bobdriver\",\r\n    \"password\": \"bobdriverpass\",\r\n    \"fname\": \"Bob\",\r\n    \"lname\": \"Driver\",\r\n    \"phone\": \"555-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/drivers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"drivers"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"driver\": {\r\n        \"fname\": \"Bob\",\r\n        \"id\": 5,\r\n        \"lname\": \"Driver\",\r\n        \"phone\": \"555-1234\",\r\n        \"username\": \"bobdriver\"\r\n    },\r\n    \"message\": \"Driver Bob Driver created successfully\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Resident Login Successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.collectionVariables.set('access_token', jsonData['access_token']) \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"bob2\",\r\n  \"password\": \"bobpass2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resident Login Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"bob2\",\r\n  \"password\": \"bobpass2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MTEwMTQxOCwianRpIjoiZjI2YmJkNzctMTRlYS00NzNmLThiMWEtM2FmOWU3OWZkZDIwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjQiLCJuYmYiOjE3NjExMDE0MTgsImV4cCI6MTc2MTEwMjMxOH0.lWzQytwAXOcQVrFzXptEGEiPFPXyNx8E-MXaKuBDn94\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Driver Login Successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.collectionVariables.set('access_token', jsonData['access_token']) \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"bobdriver\",\r\n  \"password\": \"bobdriverpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Driver Login Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"bobdriver\",\r\n  \"password\": \"bobdriverpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MTEwMTQ0NiwianRpIjoiYWFjYTEzMGItMzg3MC00M2E3LTg4YzMtZDg3NDQ0OTE5ZGIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjUiLCJuYmYiOjE3NjExMDE0NDYsImV4cCI6MTc2MTEwMjM0Nn0.trX8SO1ObhDckI5GdMRe4c1eQ_EZipgPtMO3xcPjbHk\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Identify",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/identify",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"identify"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Identify",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/identify",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"identify"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"username: bobdriver, id : 5\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Bad Credentials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.collectionVariables.set('access_token', jsonData['access_token']) \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"wrong\",\r\n  \"password\": \"wrongpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login Bad Credentials",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"wrong\",\r\n  \"password\": \"wrongpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"bad username or password given\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Driver - Schedule Drive",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"TestCity\",\r\n  \"license_plate\": \"ABC-1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/drives",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"drives"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Driver - Schedule Drive",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"city\": \"TestCity\",\r\n  \"license_plate\": \"ABC-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/drives",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"drives"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"drive\": {\r\n        \"city\": \"TestCity\",\r\n        \"driver_id\": 5,\r\n        \"id\": 1,\r\n        \"license_plate\": \"ABC-1234\"\r\n    },\r\n    \"message\": \"Drive scheduled in TestCity with License Plate: ABC-1234\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Resident - New Request",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"drive_id\" : {{drive_id}},\r\n  \"address\" : \"123 Someplace, Down the Road\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/requests",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"requests"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resident - New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"drive_id\" : {{drive_id}},\r\n  \"address\" : \"123 Someplace, Down the Road\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/requests",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"requests"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "\"message\": \"Request created successfully\",\r\n    \"request\": {\r\n        \"address\": \"123 Someplace, Down the Road\",\r\n        \"drive_id\": 1,\r\n        \"id\": 1,\r\n        \"resident_id\": 4,\r\n        \"status\": \"pending\",\r\n        \"timestamp\": \"2025-22-10 02:53 AM\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Driver - View Requests",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/drives/{{drive_id}}/requests",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"drives",
+						"{{drive_id}}",
+						"requests"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Driver - View Requests",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "/api/drives/{{drive_id}}/requests",
+							"path": [
+								"api",
+								"drives",
+								"{{drive_id}}",
+								"requests"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"drive_id\": 1,\r\n    \"requests\": [\r\n        {\r\n            \"address\": \"123 Someplace, Down the Road\",\r\n            \"id\": 1,\r\n            \"resident_id\": 4,\r\n            \"status\": \"pending\",\r\n            \"timestamp\": \"2025-22-10 02:53 AM\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Driver - Change Request Status",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"{{new_status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/requests/{{request_id}}/status",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"requests",
+						"{{request_id}}",
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Driver - Change Request Status",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"{{new_status}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/requests/{{request_id}}/status",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"requests",
+								"{{request_id}}",
+								"status"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"Request status updated to cancelled\",\r\n    \"request\": {\r\n        \"address\": \"123 Someplace, Down the Road\",\r\n        \"id\": 1,\r\n        \"resident_id\": 4,\r\n        \"status\": \"cancelled\",\r\n        \"timestamp\": \"2025-22-10 02:53 AM\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Resident - View Inbox",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/residents/{{resident_id}}/inbox",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"residents",
+						"{{resident_id}}",
+						"inbox"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resident - View Inbox",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/residents/{{resident_id}}/inbox",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"residents",
+								"{{resident_id}}",
+								"inbox"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"messages\": [\r\n        {\r\n            \"drive_id\": 1,\r\n            \"id\": 1,\r\n            \"message\": \"New drive scheduled in TestCity with License Plate: ABC-1234\",\r\n            \"timestamp\": \"2025-22-10 02:52 AM\"\r\n        }\r\n    ],\r\n    \"resident_id\": 4\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Resident - View Requests",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/residents/{{resident_id}}/requests",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"residents",
+						"{{resident_id}}",
+						"requests"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resident - View Requests",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/residents/{{resident_id}}/requests",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"residents",
+								"{{resident_id}}",
+								"requests"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"requests\": [\r\n        {\r\n            \"address\": \"123 Someplace, Down the Road\",\r\n            \"drive_id\": 1,\r\n            \"id\": 1,\r\n            \"status\": \"cancelled\",\r\n            \"timestamp\": \"2025-22-10 02:53 AM\"\r\n        }\r\n    ],\r\n    \"resident_id\": 4\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"bob2\",\r\n  \"password\": \"bobpass2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/logout",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Logout",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"bob2\",\r\n  \"password\": \"bobpass2\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"Logged Out!\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
