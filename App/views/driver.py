@@ -15,7 +15,6 @@ def create_driver_action():
     """Create a new driver (admin only)"""
     data = request.json
     
-    # Basic authorization check - you might want to add admin role check
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     
@@ -84,7 +83,6 @@ def schedule_drive_action():
 def view_drive_requests(drive_id):
     """View all requests for a specific drive (driver only)"""
     try:
-        # Optional: Add authorization to check if current user is the driver for this drive
         requests = view_requests_driver(drive_id)
         
         if requests:
