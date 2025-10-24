@@ -71,14 +71,14 @@ class DriverIntegrationTests(unittest.TestCase):
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            liscenseplate="TST1234"
+            licenseplate="TST1234"
         )
 
         db.session.add(driverlog)
         db.session.commit()
 
         assert driverlog.city == "TestCity"
-        assert driverlog.liscenseplate == "TST1234"
+        assert driverlog.licenseplate == "TST1234"
 
     def test_change_request_status(self):
         driver = create_driver(
@@ -92,7 +92,7 @@ class DriverIntegrationTests(unittest.TestCase):
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            liscenseplate="TST1234"
+            licenseplate="TST1234"
         )
         
         request = Request(
@@ -119,7 +119,7 @@ class DriverIntegrationTests(unittest.TestCase):
         driverlog = schedule_drive(
             driver_id=driver.id,
             city="TestCity",
-            liscenseplate="TST1234"
+            licenseplate="TST1234"
         )
 
         request = Request(

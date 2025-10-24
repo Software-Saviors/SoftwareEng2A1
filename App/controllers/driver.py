@@ -5,14 +5,14 @@ from App.models.Drivelog import DriveLog
 from App.models.resident import Resident
 from App.models.Inboxmessage import Inboxmessage
 from App.models.Request import Request
-def schedule_drive(driver_id, city, license_plate):
+def schedule_drive(driver_id, city, licenseplate):
     # Ensure driver exists
     driver = Driver.query.get(driver_id)
     if not driver:
         return None  # driver not found
     
     # Create the new drive
-    new_drivelog = DriveLog(city=city, liscenseplate=license_plate, driver_id=driver_id)
+    new_drivelog = DriveLog(city=city, licenseplate=licenseplate, driver_id=driver_id)
     db.session.add(new_drivelog)
     db.session.commit()
     
@@ -22,7 +22,7 @@ def schedule_drive(driver_id, city, license_plate):
         new_inboxmessage = Inboxmessage(
             resident_id=r.id,
             drive_id=new_drivelog.id,
-            message=f"New drive scheduled in {city} with License Plate: {license_plate}"
+            message=f"New drive scheduled in {city} with License Plate: {licenseplate}"
         )
         db.session.add(new_inboxmessage)
     
