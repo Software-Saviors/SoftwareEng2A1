@@ -83,19 +83,22 @@ driver_cli = AppGroup('driver', help='Driver object commands')
 @click.argument("phone", default="1234567890")
 def create_driver_command(username, password, fname, lname, phone):
     
-    create_driver(username, password, fname, lname, phone)
-    print(f'Driver {fname} {lname} created!')
+    driver=create_driver(username, password, fname, lname, phone)
+    if(driver):
+        print(f'Driver {fname} {lname} created!')
+    else:
+        print('Error creating driver.')
 
 app.cli.add_command(driver_cli) # add the group to the cli
 
 @driver_cli.command("schedule_drive", help="Schedule a drive and notify residents")
 @click.argument("drive_id", type=int, default=1)
 @click.argument("city", default="Chaguanas")
-@click.argument("liscenseplate", default="ABC123")
-def schedule_drive_command(drive_id, city, liscenseplate):
-    drivelog = schedule_drive(drive_id, city, liscenseplate)
+@click.argument("licenseplate", default="ABC123")
+def schedule_drive_command(drive_id, city, licenseplate):
+    drivelog = schedule_drive(drive_id, city, licenseplate)
     if drivelog:
-        print(f'Drive scheduled in {city} with License Plate: {liscenseplate}')
+        print(f'Drive scheduled in {city} with License Plate: {licenseplate}')
     else:
         print('Driver not found or no residents in the specified city.')
 app.cli.add_command(driver_cli) # add the group to the cli
@@ -135,8 +138,11 @@ resident_cli = AppGroup('resident', help='Resident object commands')
 @click.argument("address", default="123 Main St")
 def create_resident_command(username, password, fname, lname, phonenumber, city, address):
     
-    create_resident( username, password, fname, lname, phonenumber, city, address)
-    print(f'Resident {fname} {lname} created!')
+    resident=create_resident( username, password, fname, lname, phonenumber, city, address)
+    if(resident):
+        print(f'Resident {fname} {lname} created!')
+    else:
+        print('Error creating resident.')
 app.cli.add_command(resident_cli) # add the group to the cli
 
 @resident_cli.command("create_request", help="Create a service request")
